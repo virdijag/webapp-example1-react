@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import AddArticles from './AddArticles'
+import SearchArticle from './SearchArticle';
+import ListArticles from './ListArticles';
 
 class App extends Component {
   render() {
@@ -9,9 +12,9 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
-                <div>Add Article</div>
-                <div>Search Articles</div>
-                <div>List Articles</div>
+                <AddArticles/>
+                <SearchArticle/>
+                <ListArticles/>
               </div>
             </div>
           </div>
