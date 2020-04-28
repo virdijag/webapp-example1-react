@@ -4,7 +4,7 @@ import AddArticles from './AddArticles'
 import SearchArticle from './SearchArticle';
 import ListArticles from './ListArticles';
 
-import {without} from 'lodash';
+import {without, findIndex} from 'lodash';
 
 class App extends Component {
 
@@ -24,6 +24,7 @@ class App extends Component {
     this.addArticle = this.addArticle.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
     this.searchArticles = this.searchArticles.bind(this);
+    this.updateInfo = this.updateInfo.bind(this);
   }
 
   toggleForm(){
@@ -61,6 +62,18 @@ class App extends Component {
 
   searchArticles(query){
     this.setState({queryText:query});
+  }
+
+  updateInfo(name, value, id){
+    let tempArticles = this.state.articles;
+    let articleIndex = findIndex(this.state.articles,{
+      artId:id
+    });
+
+    tempArticles[articleIndex][name] = value;
+    this.setState({
+      articles:tempArticles
+    });
   }
 
   componentDidMount() {
@@ -129,7 +142,9 @@ class App extends Component {
                 searchArticles={this.searchArticles}           
                 />
                 <ListArticles articles={filteredArticles} 
-                deleteArticle={this.deleteArticle}/>
+                deleteArticle={this.deleteArticle}
+                updateInfo={this.updateInfo}
+                />
               </div>
             </div>
           </div>
